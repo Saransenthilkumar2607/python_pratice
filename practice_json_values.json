@@ -1,0 +1,100 @@
+{
+    "student": [
+        {
+            "name": "saran",
+            "number": "9843988927",
+            "city": "cbe",
+            "city pincode": "641003"
+        },
+        {
+            "name": "raj",
+            "number": "9876543218",
+            "city": "tirupur",
+            "city pincode": "641002"
+        },
+        {
+            "name": "kamal",
+            "number": "9123456789",
+            "city": "cbe",
+            "city pincode": "641005"
+        },
+        {
+            "name": "test",
+            "number": 1234567890,
+            "city": "grgtb",
+            "city pincode": 3456765
+        },
+        {
+            "name": "shankar",
+            "number": 9876543236,
+            "city": "cbe",
+            "city pincode": 641603
+        },
+        {
+            "name": "raja prasanna",
+            "number": 9876543210,
+            "city": "coimbatore",
+            "city pincode": 641017
+        },
+        {
+            "name": "saran",
+            "number": 9876543204,
+            "city": "cbe",
+            "city pincode": 641603
+        },
+        {
+            "name": "saran",
+            "number": 9876543234,
+            "city": "cbe",
+            "city pincode": 641403
+        },
+        {
+            "name": "saran",
+            "number": 9894768333,
+            "city": "cbe",
+            "city pincode": 641603
+        },
+        {
+            "name": "saran",
+            "number": "6385585832",
+            "city": "cbe",
+            "city pincode": 641603
+        },
+        {
+            "name": "prasabvhjfg",
+            "number": "9442640312",
+            "city": "plo",
+            "city pincode": 789456
+        },
+        {
+            "name": "pradeeop",
+            "number": "9442640132",
+            "city": "plni",
+            "city pincode": 789456
+        },
+        {
+            "name": "852",
+            "number": "9442640132",
+            "city": "852",
+            "city pincode": 635
+        },
+        {
+            "name": "saran",
+            "number": "9894768333",
+            "city": "cbe",
+            "city pincode": 654321
+        },
+        {
+            "name": "raj",
+            "number": "9894768333",
+            "city": "cbe",
+            "city pincode": 6543221
+        },
+        {
+            "name": "venkat",
+            "number": "654789854",
+            "city": "tirupur",
+            "city pincode": 641603
+        }
+    ]
+}

@@ -1,0 +1,96 @@
+{
+    "student": [
+        {
+            "name": "sanath",
+            "roll number": "221cc251",
+            "number": "9447311698",
+            "city": "cbe",
+            "city pincode": "641641",
+            "unique id": 1
+        },
+        {
+            "name": "raj",
+            "roll number": "221cc252",
+            "number": 9874569878,
+            "city": "salem",
+            "city pincode": 6000001,
+            "unique id": 2
+        },
+        {
+            "name": "kamal",
+            "roll number": "221cc253",
+            "number": 9565656956,
+            "city": "cbe",
+            "city pincode": 6416003,
+            "unique id": 3
+        },
+        {
+            "name": "shankar",
+            "roll number": "221cc254",
+            "number": 6385585832,
+            "city": "",
+            "city pincode": 654321,
+            "details": "221cc254",
+            "unique id": 4
+        },
+        {
+            "name": "ajay",
+            "roll number": "221cc255",
+            "number": 6385585832,
+            "city": "cbe",
+            "city pincode": 642602,
+            "details": "221cc255",
+            "unique id": 5
+        },
+        {
+            "name": "sri",
+            "roll number": "221cc256",
+            "number": 654585145,
+            "city": "jhgfdf",
+            "city pincode": 89562,
+            "age": "20",
+            "unique id": 6
+        },
+        {
+            "name": "kabilan",
+            "roll number": "221cc257",
+            "number": 9898759845,
+            "city": "cbe",
+            "city pincode": 6416005,
+            "unique id": 7
+        },
+        {
+            "name": "9336854654",
+            "roll number": "234565",
+            "number": 321456987,
+            "city": "369525841",
+            "city pincode": 3698521,
+            "unique id": 8
+        },
+        {
+            "name": "vijay",
+            "roll number": "221cc258",
+            "number": 9874569876,
+            "city": "chennai",
+            "city pincode": 641006,
+            "unique id": 9
+        },
+        {
+            "name": "sanju",
+            "roll number": "221cc260",
+            "number": 6544789652,
+            "city": "cbe",
+            "city pincode": 641603,
+            "unique id": 10
+        },
+        {
+            "name": "siva",
+            "roll number": "221cc261",
+            "number": 987456565,
+            "city": "cbe",
+            "city pincode": 846994,
+            "unique id": 11
+        }
+    ],
+    "last_id": 11
+}
