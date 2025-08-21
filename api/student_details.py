@@ -1,19 +1,29 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import json
-import sqlite3
+import mysql.connector
+
+
+db_config = {
+    "host" : "localhost",
+    "user": "root",
+    "password": "12345678",
+    "database": "students",
+     "port": 3306
+}
 
 def __init__db():
     #to create a database of student if there is not an databases.
-    connect = sqlite3.connect("student_details.db")
+    connect = mysql.connector.connect(**db_config)
     #connect the sql object
     cursor = connect.cursor()
-    #data tables format of student_details
-    cursor.execute('''create table if not exists students_id(
-                        student_id integer primary key autoincrement,
+    #data tables format of student_details\
+    cursor.execute('''create table if not exists students_details(
+                        student_id int auto_increment primary key,
                         student_name varchar(100) not null,
-                        student_number int not null,
+                        student_number bigint not null,
                         student_email text not null, 
                         student_course text not null
+                   
            )
   ''')
     #save connection
@@ -37,7 +47,7 @@ class studentAPI (BaseHTTPRequestHandler):
         # url path way of students
         if self.path == "/student_details" :
             #connect the student_details database
-            Connect = sqlite3.connect("student_details.db")
+            Connect = mysql.connector.connect(**db_config)
             cursor = Connect.cursor()
             #its an sql querry to select the table
             cursor.execute("select * from student_details")
@@ -47,7 +57,7 @@ class studentAPI (BaseHTTPRequestHandler):
             # the tables values of set of rows in tuple
             student_details = [{"student_id": r[0],
                                 "student_name": r[1], 
-                                "student_number": r [2], 
+                                "student_number": r[2], 
                                 "student_email": r[3], 
                                 "student_course": r[4]} for r in rows]
             # it can change the tuples to json files
@@ -57,8 +67,9 @@ class studentAPI (BaseHTTPRequestHandler):
             self.send_json_({"error": "Not found"}, 404)
 
     def do_POST(self):
+        
         #path way
-        if self.path == "/student_detail" : 
+        if self.path == "/student_information" : 
             #splits the URL path into parts.
             length = int(self.headers.get("content-length"))
             #the server how many bytes are in the request body
@@ -66,12 +77,13 @@ class studentAPI (BaseHTTPRequestHandler):
             #store a body of data
             data = json.loads(body)
 
-            connect = sqlite3.connect("student_details.db")
+            connect = mysql.connector.connect(**db_config)
             cursor = connect.cursor()
             # insert the values for post method
-            cursor.execute("insert into student_details (student_name, student_number, student_email, student_course) values (?, ?, ?, ?)",
+            cursor.execute("insert into student_details (student_name, student_number, student_email, student_course) values (%s, %s, %s, %s)",
                            (data['student_name'], data['student_number'],  data['student_email'],  data['student_course']))
             connect.commit()
+            connect.close()
             connect.close()
             # added message if the input is valied 
             self.send_json_({"message": "student_details added"}, 201)
@@ -82,29 +94,35 @@ class studentAPI (BaseHTTPRequestHandler):
 
     def do_PUT(self):
         #income path request of student details
-        if self.path.startswith == "/student_details/" :  
+        if self.path.startswith ("/student_update") :  
             # split the way url looks way
-            student_id = int(self.path.split("/")[-1])
+            try:
+                student_id = int(self.path.split("/")[-1])
+
+            except ValueError:
+                return self.send_json_({"error": "Invalid student ID"}, 400)
+        
             #splits the URL path into parts.
-            length = int(self.headers("content-length"))
+            length = int(self.headers.get("content-length"))
             #the server how many bytes are in the request body
             body = self.rfile.read(length)
             #store a body of data
             data = json.loads(body)
 
             
-            connect = sqlite3.connect("student_details.db")
+            connect = mysql.connector.connect(**db_config)
             cursor = connect.cursor()
 
             # insert the values for post method
-            cursor.execute("insert into student_details (student_name, student_number, student_email, student_course) values (?, ?, ?, ?)",
-                           (data['student_name'], 
+            cursor.execute("UPDATE student_details SET student_name=%s, student_number=%s, student_email=%s, student_course=%s WHERE id=%s",
+                            (data['student_name'], 
                             data['student_number'], 
                             data['student_email'],  
                             data['student_course'], 
                             student_id))
             connect.commit()
             rows_affected = cursor.rowcount
+            cursor.close()
             connect.close()
             
             #number of rows affect if 0 means not founded 
@@ -119,14 +137,15 @@ class studentAPI (BaseHTTPRequestHandler):
             self.send_json_({"error": "Not found"}, 404)
 
     def do_DELETE(self):
-        if self.path.startswith("/student_details/"):
+        if self.path.startswith("/student_delete/"):
             
             student_id = int(self.path.split("/")[-1])
-            connect = sqlite3.connect("student_details.db")
+            connect = mysql.connector.connect(**db_config)
             cursor = connect.cursor()
-            cursor.execute("DELETE FROM student_details WHERE id=?", (student_id,))
+            cursor.execute("DELETE FROM student_details WHERE id=%s", (student_id,))
             connect.commit()
             rows_affected = cursor.rowcount
+            cursor.close()
             connect.close()
 
             if rows_affected > 0:
