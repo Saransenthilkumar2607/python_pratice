@@ -67,7 +67,7 @@ class studentAPI (BaseHTTPRequestHandler):
             self.send_json_({"error": "Not found"}, 404)
 
     def do_POST(self):
-        
+
         #path way
         if self.path == "/student_information" : 
             #splits the URL path into parts.
@@ -98,7 +98,7 @@ class studentAPI (BaseHTTPRequestHandler):
             # split the way url looks way
             try:
                 student_id = int(self.path.split("/")[-1])
-
+            #if there is an student id valueerror
             except ValueError:
                 return self.send_json_({"error": "Invalid student ID"}, 400)
         
@@ -125,7 +125,7 @@ class studentAPI (BaseHTTPRequestHandler):
             cursor.close()
             connect.close()
             
-            #number of rows affect if 0 means not founded 
+            #number of rows affect if 0 means not founded  
             if rows_affected  > 0:
                 self.send_json_({"message": "Updated successfully"})
             # if its not founded 404 error
